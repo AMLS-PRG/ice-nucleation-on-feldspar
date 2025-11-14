@@ -1,5 +1,6 @@
 # ice-nucleation-on-feldspar
 Input files for manuscript
+
 —————————————————————————————————————————
 
 This repository contains the scripts, input files, and workflow used to generate the slab surfaces, prepare the training dataset, train the machine-learning potentials (MLPs), and run the molecular dynamics (MD) and density functional theory (DFT) calculations reported in our work.
