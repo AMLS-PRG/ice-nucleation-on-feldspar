@@ -1,0 +1,35 @@
+echo both
+
+#read_restart    ./
+
+include		in.temp
+include		in.pressure
+include		in.seed
+units		metal
+atom_style	atomic
+include		in.box
+include 	in.setup
+
+comm_style  	tiled
+balance 	1.1 rcb
+
+include         in.dump
+
+
+min_style cg  
+min_modify dmax 0.1 line quadratic  
+minimize 1.0e-10 1.0e-10 10000 10000 
+
+group           atomsfix type 1 2 3
+fix             5 atomsfix spring/self 20.0
+fix             2 all nve
+fix             3 all temp/csvr ${temperature} ${temperature} ${tempDamp} ${seed}
+fix             4 all momentum 10000 linear 1 1 1 rescale
+
+velocity 	all create ${temperature} ${seed} dist gaussian
+
+run             10000000 upto #
+
+write_data	data.final
+
+write_restart   restart.lmp

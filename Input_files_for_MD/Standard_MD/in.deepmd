@@ -1,0 +1,4 @@
+# This is a deepmd model
+
+pair_style 	deepmd /your/MLPs/path/* out_file md.out out_freq ${out_freq2}
+pair_coeff	* *

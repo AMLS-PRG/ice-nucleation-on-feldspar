@@ -1,0 +1,43 @@
+boundary        p p p
+units           metal # use restart
+atom_style      atomic # use restart
+#read_restart    ./restart2.lmp.REPLACE
+
+neighbor        2.0 bin
+neigh_modify    every 10 delay 0 check no
+
+read_data	./data/q6_selected/Q6_bin_REPLACE.data
+
+pair_style 	deepmd /your/MLPs/path/* out_file md.out_REPLACE out_freq 5000
+pair_coeff	* *
+
+variable        pressure equal 1.0
+variable        pressureDamp1 equal 10.0 # This is 10 ps
+variable        temperature equal 280.0
+variable        tempDamp equal 0.1
+variable	seed equal 31861
+
+timestep        0.0005
+thermo_style    custom step pe ke etotal temp pxx pyy pzz pxy pxz pyz press lx ly lz xy xz yz vol
+thermo          1000
+fix 		thermo_print all print 1000 "$(step) $(pe) $(ke) $(etotal) $(temp) $(pxx) $(pyy) $(pzz) $(pxy) $(pxz) $(pyz) $(press) $(lx) $(ly) $(lz) $(xy) $(xz) $(yz) $(vol)" append thermo.out screen no title "#step pe ke etotal temp pxx pyy pzz pxy pxz pyz press lx ly lz xy xz yz vol"
+
+restart         5000 restart02.lmp.REPLACE restart02_2.lmp.REPLACE 
+
+
+dump            myDump all atom 50000 ./out/dump.water.REPLACE
+
+group           atomsfix type 1 2 3
+fix		1 all plumed plumedfile Q6/plumed_Q6_REPLACE.dat outfile plumed.out.REPLACE
+fix             2 all nve
+fix             3 all temp/csvr ${temperature} ${temperature} ${tempDamp} ${seed}
+fix             4 all momentum 10000 linear 1 1 1 rescale
+fix             5 atomsfix spring/self 20.0
+velocity 	all create ${temperature} ${seed} dist gaussian
+
+run             10000000 upto # 5 ns
+
+write_data	data.final.REPLACE
+
+write_restart   restart.lmp.REPLACE
+
