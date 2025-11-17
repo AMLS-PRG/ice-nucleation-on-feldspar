@@ -1,5 +1,5 @@
-# ice-nucleation-on-feldspar
-Input files for manuscript
+# Data from "The (110) surface is the key to the high ice nucleation efficiency of potassium feldspar"
+## Authors: Wanqi Zhou and Pablo M. Piaggi
 
 —————————————————————————————————————————
 
