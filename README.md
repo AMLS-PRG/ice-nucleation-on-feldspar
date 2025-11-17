@@ -1,6 +1,8 @@
 # Data from "The (110) surface is the key to the high ice nucleation efficiency of potassium feldspar"
 ## Authors: Wanqi Zhou and Pablo M. Piaggi
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17610333.svg)](https://doi.org/10.5281/zenodo.17610333)
+
 —————————————————————————————————————————
 
 This repository contains the scripts, input files, and workflow used to generate the slab surfaces, prepare the training dataset, train the machine-learning potentials (MLPs), and run the molecular dynamics (MD) and density functional theory (DFT) calculations reported in our work.
