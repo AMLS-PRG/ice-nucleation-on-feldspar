@@ -77,7 +77,7 @@ Due to file size, the final trained MLP is stored on Google Drive. 👉 Download
 Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin.
 All simulations employed the custom-trained MLPs described above to model atomic interactions.
 
-### standard MD simulations
+### Standard MD simulations
 An example input file for standard MD simulations is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_MD/Standard_MD
 
@@ -101,7 +101,7 @@ Simulation Details
 
 9) Trajectory output: Saved every 1000 steps.
 
-### steered MD simulations
+### Steered MD simulations
 As standard MD simulations cannot capture the nucleation process within affordable simulation times, an enhanced sampling method was employed: steered MD simulations guided by the Q₆ Steinhardt order parameter, as implemented in PLUMED.
 An example input file for steered MD simulations is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_MD/SteeredMD
@@ -119,6 +119,23 @@ Simulation Details
 5) Output:
 Order parameter recorded every 1000 steps to monitor nucleation progress.
 Trajectory saved every 10,000 steps.
+
+### Umbrella sampling method
+The free energy profile of ice nucleation was calculated using the umbrella sampling method. 
+An example input file for umbrella sampling method is available at:
+https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_MD/US
+
+Simulation Details
+
+1) Collective variable: Q₆ Steinhardt parameter.
+
+2) Windows: 41 windows in the range 0.05 ≤ Q₆ ≤ 0.11 with a width of 0.0015.
+
+3) Restraint: Harmonic potential with a spring constant of 1 × 10⁶ kJ/mol applied to Q₆ in each window.
+
+4) Simulation duration: 3 ns per window.
+
+5) Free energy reconstruction: The time series of Q₆ from all windows were used to construct the free energy profile via the weighted histogram analysis method (WHAM).
 
 
 
