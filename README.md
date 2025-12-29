@@ -11,7 +11,17 @@ In this README, we introduce each file according to our four-step workflow: (1) 
 
 ## (1) Slab surface generation
 All possible terminations of the (001), (010), (100), (110), (−110), and (−201) crystallographic planes were generated using the SlabGenerator module from the pymatgen package.
-The script is located in the path 
+The script Rotate_expand_cut_pymatgen.py is located at:
+https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Generating_slab_surfaces
+This script performs the following steps:
+
+1) Read crystal structure: The script first reads the CIF file Microcline-MS-1979.cif, which contains the feldspar unit cell, and prints basic information about the crystal structure.
+
+2) Rotate the unit cell: The crystal cell is rotated so that the specified Miller index is aligned with the z-axis.
+
+3) Expand the supercell (optional): The unit cell can be expanded along selected directions to construct a supercell, depending on the simulation requirements.
+
+4) Cut the slab: Finally, the structure is cut along the z-axis to generate the desired slab geometry.
 
 
 A cutoff of 1 Å along the surface-normal direction was applied to determine whether atoms belong to the same atomic plane. This criterion was used to filter and identify unique slab terminations.
