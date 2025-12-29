@@ -9,7 +9,7 @@ This repository contains the scripts for searching slab surfaces, the input file
 
 In this README, we introduce each file according to our four-step workflow: (1) slab surface generation, (2) DFT calculations, (3) MLP training, and (4) MD simulations.
 
-## (1) Slab surface generation (🏗️)
+## (1) 🏗️ Slab surface generation
 All possible terminations of the (001), (010), (100), (110), (−110), and (−201) crystallographic planes were generated using the SlabGenerator module from the pymatgen package.
 The script Rotate_expand_cut_pymatgen.py is located at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Generating_slab_surfaces
@@ -31,7 +31,7 @@ After running the Python script above, hydrogen atoms were added near undercoord
 Additionally, surface terminations that disrupted the integrity of SiO₄ and AlO₄ polyhedra or violated charge neutrality were discarded.
 
 
-## (2) DFT calculations (📦 Dataset)
+## (2) 📦 DFT calculations (Dataset)
 Plane-wave DFT calculations were performed using Quantum ESPRESSO v6.4.1.
 An example input file, pw-water-0.in, is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_DFT
@@ -50,7 +50,7 @@ Key computational settings:
 
 Due to file size, the training dataset containing raw atomic configurations and DFT energies/forces for MLP training is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1qKnz3tHYAP0c35sSq0amDg7CQuScfyqp?usp=drive_link 📁
 
-## (3) MLP training (🤖 Final Trained MLP)
+## (3) 🤖 MLP training (Final Trained MLP)
 The smooth edition of the Deep Potential methodology developed by Zhang et al., as implemented in DeePMD-kit v2.10.0, was used to train the machine-learning interatomic potentials (MLPs).
 A typical input file, input.json, is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_training_MLP
@@ -73,7 +73,7 @@ Based on the newly trained MLPs, additional configurations were explored, and th
 
 Due to file size, the final trained MLP is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1iJiQLxTOqFKbddP4vH3R3-Vdb4NTtjK8?usp=drive_link 📁
 
-## (4)  MD simulations (🏃‍♂️)
+## (4) 🏃‍♂️ MD simulations
 Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin.
 All simulations employed the custom-trained MLPs described above to model atomic interactions.
 
