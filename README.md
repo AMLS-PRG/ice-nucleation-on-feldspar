@@ -15,17 +15,21 @@ The script Rotate_expand_cut_pymatgen.py is located at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Generating_slab_surfaces
 This script performs the following steps:
 
-1) Read crystal structure: The script first reads the CIF file Microcline-MS-1979.cif, which contains the feldspar unit cell, and prints basic information about the crystal structure.
+1) Read crystal structure: The script first reads the CIF file Microcline-MS-1979.cif, which contains the feldspar unit cell, and prints basic information about the crystal structure. (output file, converted_structure.cif: structure converted from ASE to pymatgen format)
 
-2) Rotate the unit cell: The crystal cell is rotated so that the specified Miller index is aligned with the z-axis.
+2) Rotate the unit cell: The crystal cell is rotated so that the specified Miller index is aligned with the z-axis. (output file, reorient_structure.cif: structure after Miller-index reorientation)
 
-3) Expand the supercell (optional): The unit cell can be expanded along selected directions to construct a supercell, depending on the simulation requirements.
+3) Expand the supercell (optional): The unit cell can be expanded along selected directions to construct a supercell, depending on the simulation requirements. (output file, expanded_structures.cif: expanded supercell)
 
 4) Cut the slab: Finally, the structure is cut along the z-axis to generate the desired slab geometry.
 A cutoff of 1 Å along the surface-normal direction was applied to determine whether atoms belong to the same atomic plane.
 This criterion was used to filter and identify unique slab terminations.
+The script outputs all possible slab surface terminations that satisfy these conditions. (output file, slabs_*.cif: all generated slab surface terminations)
 
-The script outputs all possible slab surface terminations that satisfy these conditions.
+After running the Python script above, hydrogen atoms were added near undercoordinated oxygen atoms at the surfaces.
+Additionally, surface terminations that disrupted the integrity of SiO₄ and AlO₄ polyhedra or violated charge neutrality were discarded.
+
+
 
 
 
