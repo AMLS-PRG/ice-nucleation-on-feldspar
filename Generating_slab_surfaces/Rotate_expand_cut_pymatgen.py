@@ -13,7 +13,7 @@ import os
 
 
 def expand_slab(structure, expansion_matrix):
-    """扩展晶胞"""
+    """Expand the unit cell"""
     print("Before expansion:", len(structure))
     output = make_supercell(structure, expansion_matrix)
     output.write("expanded_structures.cif")
@@ -22,34 +22,34 @@ def expand_slab(structure, expansion_matrix):
 
 
 def reorient_surface(structure, miller_index, layers=1, vacuum=0):
-    """根据 Miller 指数切割晶面并添加真空层"""
-    lattice = Lattice(structure.get_cell())  # 从 ASE 获取晶格矩阵
+    """Cut the surface according to the Miller index and add a vacuum layer"""
+    lattice = Lattice(structure.get_cell())  # Get lattice matrix from ASE
     print("print lattice ********************")
     print(lattice)
     print("print lattice ********************")
-    species = [atom.symbol for atom in structure]  # 获取原子种类
-    positions = structure.get_positions()  # 获取原子坐标
+    species = [atom.symbol for atom in structure]  # Get atomic species
+    positions = structure.get_positions()  # Get atomic coordinates
     
-    # 将 ASE 笛卡尔坐标转换为 pymatgen 的分数坐标
-    frac_coords = lattice.get_fractional_coords(positions)  # 将笛卡尔坐标转换为分数坐标
+    # Convert ASE Cartesian coordinates to pymatgen fractional coordinates
+    frac_coords = lattice.get_fractional_coords(positions)  # Convert Cartesian to fractional coordinates
     #print(frac_coords) 
-    #pymatgen_structure = Structure(lattice, species, positions)  # 创建 pymatgen 结构对象
-    pymatgen_structure = Structure(lattice, species, frac_coords)  # 创建 pymatgen 结构对象
-    angles = pymatgen_structure.lattice.angles  # 返回 alpha, beta, gamma 的列表
+    #pymatgen_structure = Structure(lattice, species, positions)  # Create pymatgen structure object
+    pymatgen_structure = Structure(lattice, species, frac_coords)  # Create pymatgen structure object
+    angles = pymatgen_structure.lattice.angles  # Return alpha, beta, gamma
     print("Cell angles (degrees):", angles)
-    latticepy = pymatgen_structure.lattice  # 从 pymatgen 获取晶格矩阵
+    latticepy = pymatgen_structure.lattice  # Get lattice matrix from pymatgen
     print(f"lattice information: {latticepy}")
     print('print convert structure *****')
     print(pymatgen_structure)
 
-    # 在这里将 pymatgen 结构对象输出为 CIF 文件
+    # Output pymatgen structure as CIF file
     writer = CifWriter(pymatgen_structure)
-    cif_filename = "converted_structure.cif"  # 可以根据需要调整文件名
-    writer.write_file(cif_filename)  # 保存为 CIF 格式
+    cif_filename = "converted_structure.cif"  # Adjust filename if needed
+    writer.write_file(cif_filename)  # Save as CIF
     print(f"Converted structure saved as CIF: {cif_filename}")
     
     print(pymatgen_structure.lattice) 
-    # 使用 Pymatgen 的 SlabGenerator 进行切割, ref https://pymatgen.org/pymatgen.core.html#pymatgen.core.surface.SlabGenerator
+    # Use pymatgen's SlabGenerator for cutting, ref https://pymatgen.org/pymatgen.core.html#pymatgen.core.surface.SlabGenerator
     #slabgen = SlabGenerator(pymatgen_structure, miller_index, layers, vacuum, center_slab=True, lll_reduce=False, reorient_lattice=False)
     #slabgen = SlabGenerator(pymatgen_structure, miller_index, layers, vacuum, lll_reduce=False, center_slab=False, reorient_lattice=False, primitive=False)
     slabgen = SlabGenerator(pymatgen_structure, miller_index, layers, vacuum, reorient_lattice=True, center_slab=False, primitive=False, max_normal_search=None)
@@ -61,38 +61,38 @@ def reorient_surface(structure, miller_index, layers=1, vacuum=0):
     slab_writer = CifWriter(slab)
     slab_writer.write_file(slab_cif_filename)
 
-    # 返回所有切割的表面
+    # Return the reoriented slab
     return slab
 
 def cut_surface_with_constraints(structure, miller_index, layers=1, vacuum=20):
-    """根据 Miller 指数切割晶面并添加真空层"""
-    lattice = Lattice(structure.get_cell())  # 从 ASE 获取晶格矩阵
+    """Cut the surface according to the Miller index and add a vacuum layer"""
+    lattice = Lattice(structure.get_cell())  # Get lattice matrix from ASE
     print("print lattice ********************")
     print(lattice)
     print("print lattice ********************")
-    species = [atom.symbol for atom in structure]  # 获取原子种类
-    positions = structure.get_positions()  # 获取原子坐标
+    species = [atom.symbol for atom in structure]  # Get atomic species
+    positions = structure.get_positions()  # Get atomic coordinates
     
-    # 将 ASE 笛卡尔坐标转换为 pymatgen 的分数坐标
-    frac_coords = lattice.get_fractional_coords(positions)  # 将笛卡尔坐标转换为分数坐标
+    # Convert ASE Cartesian coordinates to pymatgen fractional coordinates
+    frac_coords = lattice.get_fractional_coords(positions)  # Convert Cartesian to fractional coordinates
     #print(frac_coords) 
-    #pymatgen_structure = Structure(lattice, species, positions)  # 创建 pymatgen 结构对象
-    pymatgen_structure = Structure(lattice, species, frac_coords)  # 创建 pymatgen 结构对象
-    angles = pymatgen_structure.lattice.angles  # 返回 alpha, beta, gamma 的列表
+    #pymatgen_structure = Structure(lattice, species, positions)  # Create pymatgen structure object
+    pymatgen_structure = Structure(lattice, species, frac_coords)  # Create pymatgen structure object
+    angles = pymatgen_structure.lattice.angles  # Return alpha, beta, gamma
     print("Cell angles (degrees):", angles)
-    latticepy = pymatgen_structure.lattice  # 从 pymatgen 获取晶格矩阵
+    latticepy = pymatgen_structure.lattice  # Get lattice matrix from pymatgen
     print(f"lattice information: {latticepy}")
     print('print convert structure *****')
     print(pymatgen_structure)
     '''
-    # 在这里将 pymatgen 结构对象输出为 CIF 文件
+    # Output pymatgen structure as CIF file
     writer = CifWriter(pymatgen_structure)
-    cif_filename = "converted_structure.cif"  # 可以根据需要调整文件名
-    writer.write_file(cif_filename)  # 保存为 CIF 格式
+    cif_filename = "converted_structure.cif"  # Adjust filename if needed
+    writer.write_file(cif_filename)  # Save as CIF
     print(f"Converted structure saved as CIF: {cif_filename}")
     '''    
     print(pymatgen_structure.lattice) 
-    # 使用 Pymatgen 的 SlabGenerator 进行切割, ref https://pymatgen.org/pymatgen.core.html#pymatgen.core.surface.SlabGenerator
+    # Use pymatgen's SlabGenerator for cutting, ref https://pymatgen.org/pymatgen.core.html#pymatgen.core.surface.SlabGenerator
     #slabgen = SlabGenerator(pymatgen_structure, miller_index, layers, vacuum, center_slab=True, lll_reduce=False, reorient_lattice=False)
     #slabgen = SlabGenerator(pymatgen_structure, miller_index, layers, vacuum, lll_reduce=False, center_slab=False, reorient_lattice=False, primitive=False)
     slabgen = SlabGenerator(pymatgen_structure, miller_index, layers, vacuum, reorient_lattice=False, center_slab=False, primitive=False, max_normal_search=None)
@@ -103,63 +103,62 @@ def cut_surface_with_constraints(structure, miller_index, layers=1, vacuum=20):
         print(f"Processing slab {i+1}/{len(slabs)}")
     
         writer = CifWriter(slab)
-        cif_filename = f"slabs_{i+1}.cif"  # 可以根据需要调整文件名
-        writer.write_file(cif_filename)  # 保存为 CIF 格式
+        cif_filename = f"slabs_{i+1}.cif"  # Adjust filename if needed
+        writer.write_file(cif_filename)  # Save as CIF
 
-    # 返回所有切割的表面
+    # Return all generated slabs
     return slabs
 
 
 
 def process_structure(cif_file, miller_index, expansion_matrix, layers=1, vacuum=20):
-    """主流程：切割晶体面，计算成键数，检查终端合理性并保存结果"""
+    """Main workflow: cut crystal surfaces, calculate bond counts, check termination validity, and save results"""
     structure = read(cif_file)
         
-    # 打印晶胞信息
+    # Print unit cell information
     print("Original cell parameters (a, b, c, alpha, beta, gamma):")
     print(structure.get_cell_lengths_and_angles())
         
-    # 打印原子数和种类
+    # Print number of atoms and species
     print(f"Number of atoms: {len(structure)}")
     print(f"Atomic species: {set(atom.symbol for atom in structure)}")
         
-    # 打印空间群信息（如果存在）
+    # Print space group information (if available)
     spacegroup = structure.info.get('spacegroup', 'Not specified')
     print(f"Spacegroup: {spacegroup}")
     
-    lattice = Lattice(structure.get_cell())  # 从 ASE 获取晶格矩阵
+    lattice = Lattice(structure.get_cell())  # Get lattice matrix from ASE
     print(f"lattice information: {lattice}")
 
     reorient_surface(structure, miller_index)
     
     structure = read('reorient_structure.cif')
-    # 扩展晶胞
+    # Expand the supercell
     expanded_structure = expand_slab(structure, expansion_matrix)
 
 
 
     #structure = read('expanded_structures.cif')
-    # 切割表面，获取所有表面
+    # Cut the surface and obtain all slabs
     slabs = cut_surface_with_constraints(
         expanded_structure, [0, 0, 1], layers=layers, vacuum=vacuum
         #structure, [0, 0, 1], layers=layers, vacuum=vacuum
     )
     '''
-    # 遍历所有的表面
+    # Iterate over all slabs
     for i, slab in enumerate(slabs):
         print(f"Processing slab {i+1}/{len(slabs)}")
     
         writer = CifWriter(slab)
-        cif_filename = f"slabs_{miller_index}_{i+1}.cif"  # 可以根据需要调整文件名
-        writer.write_file(cif_filename)  # 保存为 CIF 格式
+        cif_filename = f"slabs_{miller_index}_{i+1}.cif"  # Adjust filename if needed
+        writer.write_file(cif_filename)  # Save as CIF
     '''
 
 
 
-# 示例调用
-cif_file = "./Microcline-MS-1979.cif"  # 替换为实际的 CIF 文件路径
-miller_index = [1, 1, 0]  # 替换为实际的 Miller 指数
-expansion_matrix = [[1, 0, 0], [0, 1, 0], [0, 0, 3]]  # 替换为实际的扩展矩阵
+# Example call
+cif_file = "./Microcline-MS-1979.cif"  # Replace with actual CIF file path
+miller_index = [1, 1, 0]  # Replace with actual Miller index
+expansion_matrix = [[1, 0, 0], [0, 1, 0], [0, 0, 3]]  # Replace with actual expansion matrix
 
 process_structure(cif_file, miller_index, expansion_matrix)
-
