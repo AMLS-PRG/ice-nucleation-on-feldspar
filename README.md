@@ -13,6 +13,7 @@ In this README, we introduce each file according to our four-step workflow: (1) 
 All possible terminations of the (001), (010), (100), (110), (−110), and (−201) crystallographic planes were generated using the SlabGenerator module from the pymatgen package.
 The script Rotate_expand_cut_pymatgen.py is located at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Generating_slab_surfaces
+
 This script performs the following steps:
 
 1) Read crystal structure: The script first reads the CIF file Microcline-MS-1979.cif, which contains the feldspar unit cell, and prints basic information about the crystal structure. (output file, converted_structure.cif: structure converted from ASE to pymatgen format)
@@ -34,11 +35,17 @@ Additionally, surface terminations that disrupted the integrity of SiO₄ and Al
 Plane-wave DFT calculations were performed using Quantum ESPRESSO v6.4.1.
 An example input file, pw-water-0.in, is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_DFT
+
 Key computational settings:
+
 Exchange-correlation functional: SCAN (Strongly Constrained and Appropriately Normed) evaluated via LIBXC 4.3.4.
+
 Pseudopotentials: Norm-conserving, scalar-relativistic for K, Al, Si, O, and H, parametrized using PBE, with 9, 11, 4, 6, and 1 valence electrons, respectively.
+
 Kinetic energy cutoffs: 110 Ry for wave functions and 440 Ry for charge density.
+
 k-point sampling: Only the Γ-point was used.
+
 All other parameters were set to their default values in Quantum ESPRESSO.
 
 
