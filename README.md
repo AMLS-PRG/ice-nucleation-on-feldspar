@@ -38,15 +38,15 @@ https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for
 
 Key computational settings:
 
-) Exchange-correlation functional: SCAN (Strongly Constrained and Appropriately Normed) evaluated via LIBXC 4.3.4.
+1) Exchange-correlation functional: SCAN (Strongly Constrained and Appropriately Normed) evaluated via LIBXC 4.3.4.
 
-Pseudopotentials: Norm-conserving, scalar-relativistic for K, Al, Si, O, and H, parametrized using PBE, with 9, 11, 4, 6, and 1 valence electrons, respectively.
+2) Pseudopotentials: Norm-conserving, scalar-relativistic for K, Al, Si, O, and H, parametrized using PBE, with 9, 11, 4, 6, and 1 valence electrons, respectively.
 
-Kinetic energy cutoffs: 110 Ry for wave functions and 440 Ry for charge density.
+3) Kinetic energy cutoffs: 110 Ry for wave functions and 440 Ry for charge density.
 
-k-point sampling: Only the Γ-point was used.
+4) k-point sampling: Only the Γ-point was used.
 
-All other parameters were set to their default values in Quantum ESPRESSO.
+5) All other parameters were set to their default values in Quantum ESPRESSO.
 
 Due to file size, the training dataset containing raw atomic configurations and DFT energies/forces for MLP training is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1qKnz3tHYAP0c35sSq0amDg7CQuScfyqp?usp=drive_link 📁
 
@@ -57,13 +57,13 @@ https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for
 
 The settings of the DeePMD-kit are as follows:
 
-The sizes of the embedding and fitting networks were (50, 100, 200) and (120, 120, 120), respectively.
+1) The sizes of the embedding and fitting networks were (50, 100, 200) and (120, 120, 120), respectively.
 
-A smooth and hard cutoff radius of 6 Å and 3 Å were used.
+2) A smooth and hard cutoff radius of 6 Å and 3 Å were used.
 
-The hyperparameters start_pref_e, start_pref_f, limit_pref_e, and limit_pref_f, which control the relative weights of energy and force terms in the total loss function, were set to 0.02, 1000, 1.0, and 10.0, respectively.
+3) The hyperparameters start_pref_e, start_pref_f, limit_pref_e, and limit_pref_f, which control the relative weights of energy and force terms in the total loss function, were set to 0.02, 1000, 1.0, and 10.0, respectively.
 
-The initial learning rate was 0.002, with a decay step of 20,000, and the total number of training steps was 2 × 10⁶.
+4) The initial learning rate was 0.002, with a decay step of 20,000, and the total number of training steps was 2 × 10⁶.
 
 An active learning strategy was employed during the training process:
 MD simulations driven by our previous MLP were performed to generate a series of configurations of the water-feldspar interfaces, covering all 13 K-feldspar terminations.
