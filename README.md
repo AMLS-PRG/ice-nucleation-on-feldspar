@@ -38,7 +38,7 @@ https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for
 
 Key computational settings:
 
-. Exchange-correlation functional: SCAN (Strongly Constrained and Appropriately Normed) evaluated via LIBXC 4.3.4.
+) Exchange-correlation functional: SCAN (Strongly Constrained and Appropriately Normed) evaluated via LIBXC 4.3.4.
 
 Pseudopotentials: Norm-conserving, scalar-relativistic for K, Al, Si, O, and H, parametrized using PBE, with 9, 11, 4, 6, and 1 valence electrons, respectively.
 
