@@ -73,6 +73,37 @@ Based on the newly trained MLPs, additional configurations were explored, and th
 
 Due to file size, the final trained MLP is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1iJiQLxTOqFKbddP4vH3R3-Vdb4NTtjK8?usp=drive_link 📁
 
+## (4)  MD simulations
+Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin.
+All simulations employed the custom-trained MLPs described above to model atomic interactions.
+
+An example input file for standard MD simulations is available at:
+https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_MD/Standard_MD
+
+We used the standard atomic weights for the masses of all elements K, Al, Si, and O except H, for which we used a mass of 2 grams/mol, in order to improve the stability of the integration of the equations of motion.
+Simulation boxes with periodic boundary conditions in all directions were used.
+The time step for the integration of the equations of motion was 0.5 fs.
+The simulation models were first energy-minimized using the conjugate gradient (CG) method and then equilibrated using  MD simulations in the NVT ensemble.
+A stochastic velocity-rescaling thermostat with a 0.1 ps relaxation time was used to control the temperature. 
+For studies of water structure on multiple surfaces, simulations were performed at 290 K (supercooling ΔT = 18 K) for more than 3 ns.
+During the simulations, the K, Al, and Si atoms were constrained to their initial positions by a harmonic spring with force constant of 20 eV/Å².
+The trajectory was saved every 1000 steps.
+
+\parindent 1em
+As standard MD simulations cannot capture the nucleation process within affordable simulation times, we employed an enhanced sampling method, namely steered MD simulations guided by the $Q_6$ Steinhardt order parameter \cite{steinhardt1983bond,van1992computer}, as implemented in PLUMED\cite{tribello2014plumed,bonomi16plumed}.
+The oxygen atoms of water molecules were used to calculate the $Q_6$ Steinhardt order parameter, which quantifies local structural ordering. A moving restraint with a force constant of $2 \times 10^{6}\ \mathrm{kJ/mol}$ was applied to this collective variable. 
+The simulations were performed at 300~K (supercooling ${\Delta}T$=8~K).
+The target value of the restraint was gradually increased from 0.05 to 0.2 over a 5~ns simulation.
+The order parameter was recorded every 1000 steps to monitor the progress of nucleation throughout the simulation, and the trajectory was saved every 10000 steps.
+After the steered MD simulations, configurations were extracted from the trajectory and used as the initial models for seeding simulations without bias.
+A very similar steered MD protocol was extensively validated for studying ice-binding surfaces in Ref. \cite{naullage2020computationally}.
+
+The free energy profile of ice nucleation was calculated using the umbrella sampling method. 
+The $Q_6$ Steinhardt parameter was used as collective variable, and 41 windows in the range $0.05 \leq$~$Q_6$~$\leq 0.11$ with a width of 0.0015 were used.
+In each window, the $Q_6$ parameter was restrained by a harmonic potential with a spring constant of $1 \times 10^{6}\ \mathrm{kJ/mol}$. 
+Each simulation was performed for 3~ns. 
+The time series of the $Q_6$ parameter for all windows were then used to construct the free energy profile via the weighted histogram analysis method (WHAM), following the implementation of Grossfield~\cite{Kumar1992A,Roux1995A,grossfield-wham}. 
+
 
 
 
