@@ -30,6 +30,17 @@ After running the Python script above, hydrogen atoms were added near undercoord
 Additionally, surface terminations that disrupted the integrity of SiO₄ and AlO₄ polyhedra or violated charge neutrality were discarded.
 
 
+## (2) DFT calculations
+Plane-wave DFT calculations were performed using Quantum ESPRESSO v6.4.1.
+An example input file, pw-water-0.in, is available at:
+https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_DFT
+Key computational settings:
+Exchange-correlation functional: SCAN (Strongly Constrained and Appropriately Normed) evaluated via LIBXC 4.3.4.
+Pseudopotentials: Norm-conserving, scalar-relativistic for K, Al, Si, O, and H, parametrized using PBE, with 9, 11, 4, 6, and 1 valence electrons, respectively.
+Kinetic energy cutoffs: 110 Ry for wave functions and 440 Ry for charge density.
+k-point sampling: Only the Γ-point was used.
+All other parameters were set to their default values in Quantum ESPRESSO.
+
 
 
 
