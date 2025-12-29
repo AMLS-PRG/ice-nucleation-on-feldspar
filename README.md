@@ -22,9 +22,11 @@ This script performs the following steps:
 3) Expand the supercell (optional): The unit cell can be expanded along selected directions to construct a supercell, depending on the simulation requirements.
 
 4) Cut the slab: Finally, the structure is cut along the z-axis to generate the desired slab geometry.
+A cutoff of 1 Å along the surface-normal direction was applied to determine whether atoms belong to the same atomic plane.
+This criterion was used to filter and identify unique slab terminations.
 
+The script outputs all possible slab surface terminations that satisfy these conditions.
 
-A cutoff of 1 Å along the surface-normal direction was applied to determine whether atoms belong to the same atomic plane. This criterion was used to filter and identify unique slab terminations.
 
 
 This repository contains the scripts, input files, and workflow used to generate the slab surfaces, prepare the training dataset, train the machine-learning potentials (MLPs), and run the molecular dynamics (MD) and density functional theory (DFT) calculations reported in our work.
