@@ -50,6 +50,47 @@ All other parameters were set to their default values in Quantum ESPRESSO.
 
 Due to file size, the training dataset containing raw atomic configurations and DFT energies/forces for MLP training is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1qKnz3tHYAP0c35sSq0amDg7CQuScfyqp?usp=drive_link 📁
 
+## (3) MLP training (🤖 Final Trained MLP)
+The smooth edition of the Deep Potential methodology developed by Zhang et al., as implemented in DeePMD-kit v2.10.0, was used to train the machine-learning interatomic potentials (MLPs).
+A typical input file, input.json, is available at:
+https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_training_MLP
+
+The settings of the DeePMD-kit are as follows:
+
+The sizes of the embedding and fitting networks were (50, 100, 200) and (120, 120, 120), respectively.
+
+A smooth and hard cutoff radius of 6 Å and 3 Å were used.
+
+The hyperparameters start_pref_e, start_pref_f, limit_pref_e, and limit_pref_f, which control the relative weights of energy and force terms in the total loss function, were set to 0.02, 1000, 1.0, and 10.0, respectively.
+
+The initial learning rate was 0.002, with a decay step of 20,000, and the total number of training steps was 2 × 10⁶.
+
+An active learning strategy was employed during the training process:
+MD simulations driven by our previous MLP were performed to generate a series of configurations of the water-feldspar interfaces, covering all 13 K-feldspar terminations.
+The energies and forces for these configurations were then calculated using SCAN DFT to further expand the dataset.
+The resulting dataset, which included new configurations and their corresponding energies and atomic forces, was used to train a set of four MLPs.
+Based on the newly trained MLPs, additional configurations were explored, and this cycle was repeated iteratively until a high-accuracy MLP with SCAN-level precision was obtained.
+
+
+
+
+
+The settings of the \textsc{DeePMD-kit} are as follows. 
+The sizes of the embedding and fitting networks were (50, 100, 200) and (120, 120, 120), respectively. 
+A smooth and hard cutoff radius of 6~\text{\AA} and 3~\text{\AA} were used. 
+The hyperparameters \verb|start_pref_e|, \verb|start_pref_f|, \verb|limit_pref_e|, and \verb|limit_pref_f|, which control the relative weights of energy and force terms in the total loss function, were set to 0.02, 1000, 1.0, and 10.0, respectively. 
+The initial learning rate was 0.002, with a decay step of 20{,}000, and the total number of training steps was $2\times10^{6}$.
+
+An active learning strategy was employed during the training process. 
+First, MD simulations driven by our previous MLP (Ref.~\citenum{piaggi2024first}) were performed to generate a series of configurations of the water-feldspar interfaces, covering all 13 K-feldspar terminations. 
+The energies and forces for these configurations were then calculated using SCAN DFT to further expand the dataset.
+The resulting dataset, which included new configurations and their corresponding energies and atomic forces, was used to train a set of four MLPs. 
+Based on the newly trained MLPs, additional configurations were explored, and this cycle was repeated iteratively until a high-accuracy MLP with SCAN-level precision was obtained.
+
+Plane-wave DFT calculations were performed using Quantum ESPRESSO v6.4.1.
+An example input file, pw-water-0.in, is available at:
+
+
 
 
 
