@@ -102,7 +102,7 @@ Simulation Details
 9) Trajectory output: Saved every 1000 steps.
 
 ### Steered MD simulations
-As standard MD simulations cannot capture the nucleation process within affordable simulation times, an enhanced sampling method was employed: steered MD simulations guided by the Q₆ Steinhardt order parameter, as implemented in PLUMED.
+As standard MD simulations cannot capture the nucleation process within affordable simulation times, an enhanced sampling method was employed: steered MD simulations guided by the Q₆ Steinhardt order parameter, as implemented in PLUMED (file: plumed.dat).
 An example input file for steered MD simulations is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_MD/SteeredMD
 
