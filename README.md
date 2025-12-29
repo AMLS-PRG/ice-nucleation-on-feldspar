@@ -9,7 +9,7 @@ This repository contains the scripts for searching slab surfaces, the input file
 
 In this README, we introduce each file according to our four-step workflow: (1) slab surface generation, (2) DFT calculations, (3) MLP training, and (4) MD simulations.
 
-## (1) Slab surface generation
+## (1) Slab surface generation (🏗️)
 All possible terminations of the (001), (010), (100), (110), (−110), and (−201) crystallographic planes were generated using the SlabGenerator module from the pymatgen package.
 The script Rotate_expand_cut_pymatgen.py is located at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Generating_slab_surfaces
@@ -73,7 +73,7 @@ Based on the newly trained MLPs, additional configurations were explored, and th
 
 Due to file size, the final trained MLP is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1iJiQLxTOqFKbddP4vH3R3-Vdb4NTtjK8?usp=drive_link 📁
 
-## (4)  MD simulations
+## (4)  MD simulations (🏃‍♂️)
 Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin.
 All simulations employed the custom-trained MLPs described above to model atomic interactions.
 
