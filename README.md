@@ -11,6 +11,9 @@ In this README, we introduce each file according to our four-step workflow: (1) 
 
 ## (1) Slab surface generation
 All possible terminations of the (001), (010), (100), (110), (−110), and (−201) crystallographic planes were generated using the SlabGenerator module from the pymatgen package.
+The script is located in the path 
+
+
 A cutoff of 1 Å along the surface-normal direction was applied to determine whether atoms belong to the same atomic plane. This criterion was used to filter and identify unique slab terminations.
 
 
