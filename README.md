@@ -50,7 +50,7 @@ Key computational settings:
 
 Due to file size, the training dataset containing raw atomic configurations and DFT energies/forces for MLP training is stored on Google Drive. 👉 Download: https://drive.google.com/drive/folders/1qKnz3tHYAP0c35sSq0amDg7CQuScfyqp?usp=drive_link 📁
 
-## (3) 🤖 MLP training (Final Trained MLP)
+## (3) 🤖 MLP training (Final trained MLP)
 The smooth edition of the Deep Potential methodology developed by Zhang et al., as implemented in DeePMD-kit v2.10.0, was used to train the machine-learning interatomic potentials (MLPs).
 A typical input file, input.json, is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_training_MLP
