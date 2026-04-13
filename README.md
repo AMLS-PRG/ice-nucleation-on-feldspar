@@ -1,4 +1,4 @@
-# Data from "Molecular mechanism of heterogeneous ice nucleation in the atmosphere"
+# Data from "Molecular mechanism of heterogeneous ice nucleation on potassium feldspar"
 ## Authors: Wanqi Zhou and Pablo M. Piaggi
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17610333.svg)](https://doi.org/10.5281/zenodo.17610332)
