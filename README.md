@@ -2,7 +2,7 @@
 ## Authors: Wanqi Zhou and Pablo M. Piaggi
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17610333.svg)](https://doi.org/10.5281/zenodo.17610332)
-
+[![arXiv](http://img.shields.io/badge/arXiv-2511.13402-B31B1B.svg)](https://arxiv.org/abs/2511.13402)
 —————————————————————————————————————————
 
 This repository contains the scripts for searching slab surfaces, the input file for density functional theory (DFT) calculations used to generate the training dataset, input files for training machine-learning potentials (MLPs) and running molecular dynamics (MD) simulations. It also includes the generated datasets and the final trained MLP models.
