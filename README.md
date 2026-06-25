@@ -1,4 +1,4 @@
-# Data from "Molecular mechanism of heterogeneous ice nucleation on potassium feldspar"
+# Data from "Molecular mechanism of ice nucleation on feldspar"
 ## Authors: Wanqi Zhou and Pablo M. Piaggi
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17610333.svg)](https://doi.org/10.5281/zenodo.17610332)
