@@ -37,6 +37,7 @@ All generated surface structures were saved as CIF files and are available at ht
 Plane-wave DFT calculations were performed using Quantum ESPRESSO v6.4.1.
 An example input file, pw-water-0.in, is available at:
 https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Input_files_for_DFT
+
 The input structures used to generate the DFT dataset during the active learning procedure are available at https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Interface-Model-All-DFT.
 
 
