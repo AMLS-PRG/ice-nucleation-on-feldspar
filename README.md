@@ -30,6 +30,7 @@ The script outputs all possible slab surface terminations that satisfy these con
 
 After running the Python script above, hydrogen atoms were added near undercoordinated oxygen atoms at the surfaces.
 Additionally, surface terminations that disrupted the integrity of SiO₄ and AlO₄ polyhedra or violated charge neutrality were discarded.
+All generated surface structures were saved as CIF files and are available at https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Feldspar-Surface.
 
 
 ## (2) 📦 DFT calculations (Dataset)
