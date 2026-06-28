@@ -78,6 +78,7 @@ Due to file size, the final trained MLP is stored on Google Drive. 👉 Download
 ## (4) 🏃‍♂️ MD simulations
 Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin.
 All simulations employed the custom-trained MLPs described above to model atomic interactions.
+Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin. All simulations employed the custom-trained MLPs described above to model atomic interactions. All atomistic models of the feldspar–water interfaces used in the MD simulations are available at https://github.com/AMLS-PRG/ice-nucleation-on-feldspar/tree/main/Interface-Model-All-MD.
 
 ### Standard MD simulations
 An example input file for standard MD simulations is available at:
