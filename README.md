@@ -53,7 +53,7 @@ Key computational settings:
 
 5) All other parameters were set to their default values in Quantum ESPRESSO.
 
-Due to file size, the training dataset containing raw atomic configurations and DFT energies/forces for MLP training is stored on Google Drive. 👉 Download: https://zenodo.org/records/20843657/files/training-set?download=1 📁
+Due to file size, the training dataset containing raw atomic configurations and DFT energies/forces for MLP training is stored on Zenodo. 👉 Download: https://zenodo.org/records/20843657/files/training-set?download=1 📁
 
 ## (3) 🤖 MLP training (Final trained MLP)
 The smooth edition of the Deep Potential methodology developed by Zhang et al., as implemented in DeePMD-kit v2.10.0, was used to train the machine-learning interatomic potentials (MLPs).
@@ -76,7 +76,7 @@ The energies and forces for these configurations were then calculated using SCAN
 The resulting dataset, which included new configurations and their corresponding energies and atomic forces, was used to train a set of four MLPs.
 Based on the newly trained MLPs, additional configurations were explored, and this cycle was repeated iteratively until a high-accuracy MLP with SCAN-level precision was obtained.
 
-Due to file size, the final trained MLP is stored on Google Drive. 👉 Download: https://zenodo.org/records/20843657/files/final-models.zip?download=1 📁
+Due to file size, the final trained MLP is stored on Zenodo. 👉 Download: https://zenodo.org/records/20843657/files/final-models.zip?download=1 📁
 
 ## (4) 🏃‍♂️ MD simulations
 Molecular dynamics (MD) and enhanced sampling simulations were performed using LAMMPS interfaced with the PLUMED plugin.
